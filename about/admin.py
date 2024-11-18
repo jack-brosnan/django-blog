@@ -4,5 +4,5 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(About)
 class AboutAdmin(SummernoteModelAdmin):
-
-    summernote_fields = ('content',)
+    list_display = ('title', 'updated_on')
+    summernote_fields = ('content')
