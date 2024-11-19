@@ -12,7 +12,7 @@
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                {% if "placeholder" in post.featured_image %}
+                {% if "placeholder" in post.featured_image.url %}
                 <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
                 {% else %}
                 <img src="{{post.featured_image.url}}" class="scale" alt="placeholder">
@@ -28,9 +28,10 @@
             <div class="card-body">
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text">
+                <article class="card-text">
+                    <h2 class="d-none">Post Content</h2>
                     {{ post.content | safe }}
-                </p>
+                </article>
             </div>
         </div>
     </div>
@@ -71,8 +72,8 @@
                     </p>
                     {% endif %}
                     {% if user.is_authenticated and comment.author == user %}
-                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}
                 </div>
                 <!-- Our for loop ends here -->
